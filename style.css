@@ -1,0 +1,93 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background: linear-gradient(#ffd6e7, #fff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    min-height: 100vh;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.wrap {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 450px;
+    /* position: relative */
+}
+
+h1 {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    color: #ff3b70;
+}
+
+.wheel{
+    position: relative; /* 作為指針絕對定位的參考點 */
+    width: 90vw;        /* 寬度隨手機螢幕大小自動縮放 */
+    max-width: 400px;   /* 最大不超過 400px 避免過大 */
+    aspect-ratio: 1 / 1;/* 確保永遠是正方形 */
+}
+
+canvas {
+   width: 100%;        /* 寬度填滿父層 */
+    height: 100%;       /* 高度填滿父層 */
+    border-radius: 50%;
+    box-shadow: 0 0 20px #999;
+}
+
+.pointer {
+    font-size: 32px;
+    color: #d00;
+    position: absolute; /* 改用絕對定位，精準壓在轉盤上方 */
+    top: -20px;         /* 往上浮出轉盤一點點 */
+    left: 50%;
+    transform: translateX(-50%); /* 水平完美置中 */
+    z-index: 10;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+button {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 12px 30px;
+    font-size: 20px;
+    border: none;
+    border-radius: 30px;
+    background: #ff5c8a;
+    color: #fff;
+    cursor: pointer;
+}
+button:active {
+    transform: scale(0.95); /* 手機點擊時的反饋效果 */
+}
+
+
+/* 彩帶粒子基礎樣式 */
+.confetti-piece {
+  position: fixed;
+  width: 10px;
+  height: 20px;
+  background-color: #ffd700;
+  top: -20px;
+  z-index: 9999;
+  pointer-events: none;
+  animation: fall linear forwards;
+}
+
+/* 掉落與旋轉動畫 */
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(105vh) rotate(720deg);
+    opacity: 0.3;
+  }
+}
