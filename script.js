@@ -9,18 +9,6 @@ const prizes = [
     { t: "2000元", p: 20, c: "#BAE1FF" }, 
 ];
 
-// 🎵 初始化音效物件
-// ------------------------
-const tickSound = new Audio('./Music/winning-reward-1983.wav');
-const winSound = new Audio('./Music/applause-510.wav');
-
-// 設定轉動音效為循環播放
-tickSound.loop = true; 
-// ✅ 關鍵 2：監聽播放進度，強行切掉後面的 2 秒空白
-
-
-// 稍微調低轉動音效音量 (0.0 到 1.0)
-tickSound.volume = 0.5; 
 
 const spinDuration = 6; // 想要轉幾秒就改成幾（例如：5 代表轉 5 秒）
 let start = 0;
@@ -68,11 +56,6 @@ draw();
 let currentRotate = 0; 
 
 document.getElementById("spin").onclick = () => {
-    // iPhone 限制：必須在 click 事件當下直接觸發 .play() 才能順利播放
-    // 這裡先播放再重設時間，確保聲音可以同步出來
-    tickSound.currentTime = 0;
-    tickSound.play().catch(err => console.log("音效播放被瀏覽器阻擋:", err));
-
 
     document.getElementById("result").innerHTML ="";
 
@@ -89,9 +72,6 @@ document.getElementById("spin").onclick = () => {
     document.getElementById("spin").disabled = true;
 
      // 在轉盤轉動快結束前（例如第 4.5 秒），讓轉動音效慢慢停下來，視覺感更逼真
-    setTimeout(() => {
-        tickSound.pause();
-    }, (spinDuration * 1000) + 200);
 
     setTimeout(() => {
         // 3. 精準計算指針位置 (100% 同步畫面)
@@ -112,9 +92,6 @@ document.getElementById("spin").onclick = () => {
         document.getElementById("result").innerHTML =
             `🎉 恭喜妳抽中 <b>${prize}</b><br>生日快樂❤️`;
 
-        // 🎵 播放中獎音效
-        winSound.currentTime = 0;
-        winSound.play().catch(err => console.log(err));
         
         // 5. ✨ 觸發滿螢幕噴發碎紙屑特效 ✨
         triggerConfetti();
