@@ -1,12 +1,12 @@
 const cvs = document.getElementById("wheel"), ctx = cvs.getContext("2d");
 const prizes = [
-    { t: "1000元", p: 10, c: "#FFB3BA" },
-    { t: "2000元", p: 20, c: "#BAE1FF" }, 
-    { t: "3000元", p: 17.5, c: "#BAFFC9" }, 
-    { t: "5000元", p: 5, c: "#FFFFBA" },
-    { t: "3000元", p: 17.5, c: "#BAFFC9" }, 
-    { t: "1000元", p: 10, c: "#FFB3BA" },
-    { t: "2000元", p: 20, c: "#BAE1FF" }, 
+    { t: "1000元", p: 2.5, c: "#FFB3BA" },
+    { t: "2000元", p: 22.5, c: "#BAE1FF" }, 
+    { t: "3000元", p: 20, c: "#BAFFC9" }, 
+    { t: "5000元", p: 10, c: "#FFFFBA" },
+    { t: "3000元", p: 20, c: "#BAFFC9" }, 
+    { t: "1000元", p: 2.5, c: "#FFB3BA" },
+    { t: "2000元", p: 22.5, c: "#BAE1FF" }, 
 ];
 
 
