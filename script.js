@@ -1,18 +1,16 @@
 const cvs = document.getElementById("wheel"), ctx = cvs.getContext("2d");
 const prizes = [
     { t: "1000元", p: 2.5, c: "#FFB3BA" },
-    { t: "2000元", p: 22.5, c: "#BAE1FF" }, 
-    { t: "3000元", p: 20, c: "#BAFFC9" }, 
+    { t: "2000元", p: 22.5, c: "#BAE1FF" },
+    { t: "3000元", p: 20, c: "#BAFFC9" },
     { t: "5000元", p: 10, c: "#FFFFBA" },
-    { t: "3000元", p: 20, c: "#BAFFC9" }, 
+    { t: "3000元", p: 20, c: "#BAFFC9" },
     { t: "1000元", p: 2.5, c: "#FFB3BA" },
-    { t: "2000元", p: 22.5, c: "#BAE1FF" }, 
+    { t: "2000元", p: 22.5, c: "#BAE1FF" },
 ];
 
 
 const spinDuration = 6; // 想要轉幾秒就改成幾（例如：5 代表轉 5 秒）
-let start = 0;
-
 /**
  * 依照機率繪製轉盤
  */
@@ -21,7 +19,7 @@ function draw() {
     let startAngle = -Math.PI / 2; // 從正上方開始畫 (-90°)
 
     prizes.forEach(item => {
-        const angle = item.p / 100 * Math.PI * 2;   
+        const angle = item.p / 100 * Math.PI * 2;
 
         // 畫扇形
         ctx.beginPath();
@@ -53,15 +51,17 @@ function draw() {
 
 draw();
 
-let currentRotate = 0; 
+let currentRotate = 0;
+const bonuses = [];
+let times = 3;
+let finalBonus = ""
 
 document.getElementById("spin").onclick = () => {
-
-    document.getElementById("result").innerHTML ="";
+    document.getElementById("result").innerHTML = "";
 
     // 1. 直接亂數一個角度
     const randomAngle = Math.random() * 360;
-    
+
     // 2. 多轉幾圈 (累加角度防止倒轉)
     currentRotate += (360 * 8) + randomAngle;
 
@@ -71,7 +71,7 @@ document.getElementById("spin").onclick = () => {
     // 點擊後立刻停用按鈕，防止重複點擊導致動畫錯亂
     document.getElementById("spin").disabled = true;
 
-     // 在轉盤轉動快結束前（例如第 4.5 秒），讓轉動音效慢慢停下來，視覺感更逼真
+    // 在轉盤轉動快結束前（例如第 4.5 秒），讓轉動音效慢慢停下來，視覺感更逼真
 
     setTimeout(() => {
         // 3. 精準計算指針位置 (100% 同步畫面)
@@ -88,19 +88,34 @@ document.getElementById("spin").onclick = () => {
             }
         }
 
-        // 4. 顯示中獎文字
-        document.getElementById("result").innerHTML =
-            `🎉 恭喜妳抽中 <b>${prize}</b><br>生日快樂❤️`;
+        bonuses.push(prize);
+        finalBonus = bonuses.reduce((a, b) => parseInt(a) > parseInt(b) ? a : b);
 
-        
-        // 5. ✨ 觸發滿螢幕噴發碎紙屑特效 ✨
-        triggerConfetti();
+        if (times == 0) {
+            // 4. 顯示中獎文字
+            document.getElementById("result").innerHTML =
+                `🎉 恭喜妳獲得 <b>${finalBonus}</b><br>生日快樂❤️`;
+            // 5. ✨ 觸發滿螢幕噴發碎紙屑特效 ✨
+            triggerConfetti();
+        }
+
 
         // 6. 抽獎結束，重新啟用按鈕，讓她可以繼續玩
-        document.getElementById("spin").disabled = false;
+        if (times > 0) {
+            document.getElementById("spin").disabled = false;
+        }
 
     }, (spinDuration * 1000) + 300);
-};
+
+    times--;
+    if (times === 0) {
+        document.getElementById("spin").disabled = true;
+    }
+
+}
+
+
+
 
 /**
  * 碎紙屑特效控制函數
@@ -111,6 +126,8 @@ document.getElementById("spin").onclick = () => {
 function triggerConfetti() {
     const colors = ['#FFB3BA', '#BAE1FF', '#BAFFC9', '#FFFFBA', '#FFDFBA', '#E8AEFF'];
     const pieceCount = 750; // 彩帶總數量
+    const wrap = document.getElementsByClassName("wrap")[0];
+
 
     for (let i = 0; i < pieceCount; i++) {
         // 建立彩色紙屑元素
