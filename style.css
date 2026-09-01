@@ -63,6 +63,10 @@ canvas {
     color: #fff;
     cursor: pointer;
 }
+.spin:disabled{
+    cursor:not-allowed;
+    background: #6c757d;
+}
 button:active {
     transform: scale(0.95); /* 手機點擊時的反饋效果 */
 }
