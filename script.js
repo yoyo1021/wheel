@@ -57,8 +57,6 @@ let times = 3;
 let finalBonus = ""
 
 document.getElementById("spin").onclick = () => {
-    document.getElementById("result").innerHTML = "";
-
     // 1. 直接亂數一個角度
     const randomAngle = Math.random() * 360;
 
@@ -90,11 +88,21 @@ document.getElementById("spin").onclick = () => {
 
         bonuses.push(prize);
         finalBonus = bonuses.reduce((a, b) => parseInt(a) > parseInt(b) ? a : b);
-
+        updateHistory();
         if (times == 0) {
-            // 4. 顯示中獎文字
-            document.getElementById("result").innerHTML =
-                `🎉 恭喜妳獲得 <b>${finalBonus}</b><br>生日快樂❤️`;
+
+            // 獎金3倍
+            if(bonuses.length===3 && bonuses[0]===bonuses[1] && bonuses[1]===bonuses[2]){
+                finalBonus = parseInt(finalBonus)*3;
+            }
+
+            // 顯示最後獎金
+            document.getElementById("resultMoney").innerHTML =
+                `${finalBonus}`;
+
+            // 顯示中獎視窗
+            document.getElementById("resultModal")
+                .classList.remove("d-none");
             // 5. ✨ 觸發滿螢幕噴發碎紙屑特效 ✨
             triggerConfetti();
         }
@@ -114,7 +122,32 @@ document.getElementById("spin").onclick = () => {
 
 }
 
+function updateHistory() {
 
+    const historyElement = document.getElementById("history");
+
+    historyElement.innerHTML = `
+        <div class="history-title">
+            幸運紀錄 🍀
+        </div>
+
+        ${bonuses.map((bonus, index) => `
+            <div class="history-item">
+                <span>第 ${index + 1} 次</span>
+                <strong>${bonus}</strong>
+            </div>
+        `).join("")}
+    `;
+}
+
+document.getElementById("modal-close").onclick = () => {
+    document.getElementById("barrier").classList.add("d-none")
+}
+
+document.getElementById("resultClose").onclick = () => {
+    document.getElementById("resultModal")
+        .classList.add("d-none");
+};
 
 
 /**
