@@ -92,19 +92,23 @@ document.getElementById("spin").onclick = () => {
         if (times == 0) {
 
             // 獎金3倍
-            if(bonuses.length===3 && bonuses[0]===bonuses[1] && bonuses[1]===bonuses[2]){
-                finalBonus = parseInt(finalBonus)*3;
+            if (bonuses.length === 3 && bonuses[0] === bonuses[1] && bonuses[1] === bonuses[2]) {
+                finalBonus = parseInt(finalBonus) * 3;
             }
 
             // 顯示最後獎金
             document.getElementById("resultMoney").innerHTML =
                 `${finalBonus}`;
 
-            // 顯示中獎視窗
-            document.getElementById("resultModal")
-                .classList.remove("d-none");
-            // 5. ✨ 觸發滿螢幕噴發碎紙屑特效 ✨
-            triggerConfetti();
+
+            setTimeout(() => {
+                // 顯示中獎視窗
+                document.getElementById("resultModal")
+                    .classList.remove("d-none");
+                // 5. ✨ 觸發滿螢幕噴發碎紙屑特效 ✨
+                triggerConfetti();
+            }, 500);
+
         }
 
 
