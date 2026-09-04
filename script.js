@@ -145,7 +145,26 @@ function updateHistory() {
 }
 
 document.getElementById("modal-close").onclick = () => {
-    document.getElementById("barrier").classList.add("d-none")
+    const barrier = document.getElementById("barrier");
+    const gameArea = document.getElementById("gameArea");
+
+    // 規則 Modal 開始離場
+    barrier.classList.add("hide-rule");
+
+    // 稍微延遲，讓畫面有連續感
+    setTimeout(() => {
+
+        // 顯示遊戲區
+        gameArea.classList.add("show-game");
+
+    }, 250);
+
+    // 動畫結束後完全隱藏 Modal
+    setTimeout(() => {
+
+        barrier.classList.add("d-none");
+
+    }, 650);
 }
 
 document.getElementById("resultClose").onclick = () => {
@@ -153,6 +172,17 @@ document.getElementById("resultClose").onclick = () => {
         .classList.add("d-none");
 };
 
+document.getElementById("startBirthday").onclick = () => {
+
+    const opening = document.getElementById("birthdayOpening");
+
+    opening.classList.add("hide");
+
+    // 等開場動畫結束後顯示遊戲規則
+    setTimeout(() => {
+        document.getElementById("barrier").classList.remove("d-none");
+    }, 700);
+};
 
 /**
  * 碎紙屑特效控制函數

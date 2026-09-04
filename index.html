@@ -16,6 +16,46 @@
 </head>
 
 <body>
+    <!-- =========================
+     Birthday Opening
+========================= -->
+    <div class="birthday-opening" id="birthdayOpening">
+
+        <div class="opening-content">
+
+            <div class="opening-deco deco-left">✨</div>
+            <div class="opening-deco deco-right">💕</div>
+
+            <div class="opening-cake">
+                🎂
+            </div>
+
+
+            <h1 class="opening-title">
+                給今天最重要的妳
+            </h1>
+
+            <div class="opening-divider">
+                <span></span>
+                ❤️
+                <span></span>
+            </div>
+
+            <p class="opening-text">
+                我準備了一份特別的生日禮物要給妳
+            </p>
+
+            <button class="opening-btn" id="startBirthday">
+                開啟生日驚喜 🎁
+            </button>
+
+            <div class="opening-footer">
+                Happy Birthday ❤️
+            </div>
+
+        </div>
+
+    </div>
     <div class="wrap">
         <div class="barrier" id="barrier">
             <div class="modal-dialog modal-dialog-centered">
@@ -30,7 +70,7 @@
                             <span class="rule-icon">🎡</span>
                             <div class="w-100">
                                 <strong>3 次機會</strong>
-                                <p>妳有 3 次機會轉動幸運轉盤</p>
+                                <p>妳有 3 次機會轉動轉盤</p>
                             </div>
                         </div>
 
@@ -61,18 +101,23 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn birthday-btn" id="modal-close">
-                            開始我的生日驚喜 🎁
+                            Let's go 🎁
                         </button>
                     </div>
 
                 </div>
             </div>
         </div>
-        <div class="wheel">
-            <canvas id="wheel" width="500" height="500"></canvas>
-            <div class="pointer" id="pointer">▼</div>
+        <div class="game-area" id="gameArea">
+            <div class="wheel-container" id="wheelContainer">
+                <div class="wheel">
+                    <canvas id="wheel" width="500" height="500"></canvas>
+                    <div class="pointer" id="pointer">▼</div>
+                </div>
+                <button id="spin" class="bnt btn-lg mb-3 spin">開始抽獎</button>
+            </div>
         </div>
-        <button id="spin" class="bnt btn-lg mb-3 spin">開始抽獎</button>
+
 
         <div class="history" id="history">
             <div class="history-title">幸運紀錄 🍀</div>

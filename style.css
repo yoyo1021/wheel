@@ -614,3 +614,450 @@ button:active {
         font-size: 3rem;
     }
 }
+
+/* =========================
+   Birthday Opening
+========================= */
+
+.birthday-opening {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    z-index: 10000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            #ffdce9 0%,
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            #ffe8f1 0%,
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #fff3f7,
+            #ffe5ee
+        );
+
+    transition:
+        opacity 0.8s ease,
+        visibility 0.8s ease;
+}
+
+
+/* 開場內容 */
+
+.opening-content {
+    position: relative;
+
+    width: min(90%, 520px);
+
+    padding: 45px 30px 35px;
+
+    text-align: center;
+
+    background: rgba(255, 255, 255, 0.7);
+
+    border: 1px solid rgba(255, 255, 255, 0.8);
+
+    border-radius: 30px;
+
+    box-shadow:
+        0 20px 60px rgba(217, 79, 130, 0.15);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    animation: openingCard 1s ease;
+}
+
+
+/* 裝飾 */
+
+.opening-deco {
+    position: absolute;
+
+    font-size: 28px;
+
+    animation: floating 3s ease-in-out infinite;
+}
+
+.deco-left {
+    top: 35px;
+    left: 30px;
+}
+
+.deco-right {
+    top: 70px;
+    right: 30px;
+
+    animation-delay: 0.8s;
+}
+
+
+/* 蛋糕 */
+
+.opening-cake {
+    font-size: 65px;
+
+    margin-bottom: 10px;
+
+    animation:
+        cakeFloat 2.5s ease-in-out infinite;
+}
+
+
+
+/* 主標題 */
+
+.opening-title {
+    margin: 0;
+
+    color: #d94f82;
+
+    font-size: clamp(1.8rem, 5vw, 2.4rem);
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+
+/* 分隔線 */
+
+.opening-divider {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    margin: 22px 0;
+}
+
+.opening-divider span {
+    display: block;
+
+    width: 55px;
+    height: 1px;
+
+    background: #efb5c8;
+}
+
+.opening-divider {
+    color: #e84d7c;
+
+    font-size: 14px;
+}
+
+
+/* 內文 */
+
+.opening-text {
+    margin: 0 auto 30px;
+
+    color: #777;
+
+    font-size: 0.95rem;
+
+    line-height: 2;
+
+    letter-spacing: 0.5px;
+}
+
+.opening-text strong {
+    color: #d94f82;
+
+    font-weight: 700;
+}
+
+
+/* 開始按鈕 */
+
+.opening-btn {
+    width: min(100%, 300px);
+
+    padding: 15px 25px;
+
+    border: none;
+    border-radius: 50px;
+
+    background: linear-gradient(
+        135deg,
+        #f47ba5,
+        #e85083
+    );
+
+    color: white;
+
+    font-size: 1rem;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px rgba(232, 80, 131, 0.3);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.opening-btn:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 25px rgba(232, 80, 131, 0.4);
+}
+
+.opening-btn:active {
+    transform: scale(0.97);
+}
+
+
+/* 底部 */
+
+.opening-footer {
+    margin-top: 25px;
+
+    color: #d994aa;
+
+    font-size: 0.8rem;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================
+   動畫
+========================= */
+
+@keyframes openingCard {
+
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+@keyframes cakeFloat {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(-2deg);
+    }
+
+    50% {
+        transform: translateY(-8px) rotate(2deg);
+    }
+
+}
+
+@keyframes floating {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+
+}
+
+
+/* =========================
+   關閉動畫
+========================= */
+
+.birthday-opening.hide {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+
+/* =========================
+   手機
+========================= */
+
+@media (max-width: 576px) {
+
+    .opening-content {
+        padding: 35px 22px 28px;
+
+        border-radius: 24px;
+    }
+
+    .opening-cake {
+        font-size: 55px;
+    }
+
+    .opening-text {
+        font-size: 0.9rem;
+    }
+
+    .deco-left {
+        left: 18px;
+    }
+
+    .deco-right {
+        right: 18px;
+    }
+}
+
+/* =========================
+   遊戲區初始狀態
+========================= */
+
+.game-area {
+    opacity: 0;
+    transform: translateY(35px) scale(0.96);
+
+    pointer-events: none;
+}
+
+
+/* =========================
+   轉場開始
+========================= */
+
+.game-area.show-game {
+    animation: gameEnter 0.9s cubic-bezier(.16, 1, .3, 1) forwards;
+
+    pointer-events: auto;
+}
+
+
+/* 轉盤稍微慢一點進場 */
+
+.wheel-container {
+    transform: scale(0.85) rotate(-8deg);
+    opacity: 0;
+}
+
+.game-area.show-game .wheel-container {
+    animation: wheelEnter 1s cubic-bezier(.16, 1, .3, 1) 0.15s forwards;
+}
+
+
+/* 抽獎按鈕 */
+
+.game-area .spin {
+    opacity: 0;
+    transform: translateY(15px);
+}
+
+.game-area.show-game .spin {
+    animation: buttonEnter 0.6s ease 0.7s forwards;
+}
+
+
+/* =========================
+   規則 Modal 離場
+========================= */
+
+.barrier.hide-rule {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+        opacity 0.6s ease,
+        visibility 0.6s ease;
+}
+
+.barrier.hide-rule .birthday-modal {
+    animation: modalExit 0.6s cubic-bezier(.4, 0, .2, 1) forwards;
+}
+
+
+/* =========================
+   動畫
+========================= */
+
+@keyframes modalExit {
+
+    0% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0.88) translateY(-30px);
+    }
+
+}
+
+
+@keyframes gameEnter {
+
+    0% {
+        opacity: 0;
+        transform: translateY(35px) scale(0.96);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+@keyframes wheelEnter {
+
+    0% {
+        opacity: 0;
+        transform: scale(0.75) rotate(-12deg);
+    }
+
+    60% {
+        opacity: 1;
+        transform: scale(1.03) rotate(2deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+
+}
+
+
+@keyframes buttonEnter {
+
+    0% {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
